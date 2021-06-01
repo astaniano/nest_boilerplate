@@ -1,0 +1,6 @@
+// create user
+curl -i -X POST http://localhost:3000/users -H 'Content-Type: application/json' -d '{"email": "bro@ffffff.com", "password": "123456"}'
+
+// get users
+curl -i -X GET http://localhost:3000/users
+
