@@ -6,6 +6,7 @@ import { UsersModule } from './users/users.module';
 import { RolesModule } from './roles/roles.module';
 import { Role } from './roles/roles.model';
 import { UserRoles } from './roles/user-roles';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   controllers: [],
@@ -20,12 +21,13 @@ import { UserRoles } from './roles/user-roles';
       port: Number(process.env.POSTGRESS_PORT),
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRESS_PASSWORD,
-      database: process.env.POSTGRESgi_DB,
+      database: process.env.POSTGRES_DB,
       models: [User, Role, UserRoles],
       autoLoadModels: true,
     }),
     UsersModule,
     RolesModule,
+    AuthModule,
   ],
 })
 export class AppModule {}
