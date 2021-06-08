@@ -1,18 +1,29 @@
-// create user depricated
-curl -i -X POST http://localhost:3000/users -H 'Content-Type: application/json' -d '{"email": "bro@ffffffd.com", "password": "123456"}'
 // create user
-curl -i -X POST http://localhost:3000/auth/signup -H 'Content-Type: application/json' -d '{"email": "bro@ffff.com", "password": "123456"}'
+curl -i -X POST http://localhost:3000/users -H 'Content-Type: application/json' -d '{"ff": true, "fff": 333}'
+
+// signup user
+curl -i -X POST http://localhost:3000/auth/signup -H 'Content-Type: application/json' -d '{"email": "admin3@tttt.com", "password": "123456"}'
 
 // signin user
-curl -i -X POST http://localhost:3000/auth/signin -H 'Content-Type: application/json' -d '{"email": "bro@ffff.com", "password": "123456"}'
+curl -i -X POST http://localhost:3000/auth/signin -H 'Content-Type: application/json' -d '{"email": "admin2@tttt.com", "password": "123456"}'
 
-// get all users
-curl -i -X GET http://localhost:3000/users
 
 // get role
 curl -i -X GET http://localhost:3000/roles/ADMIN
 
-// create role admin
+
+// create roles:
+//admin
 curl -i -X POST http://localhost:3000/roles -H 'Content-Type: application/json' -d '{"value": "ADMIN", "description": "main user"}'
-// create role user
+//user
 curl -i -X POST http://localhost:3000/roles -H 'Content-Type: application/json' -d '{"value": "USER", "description": "regular user"}'
+
+
+// get all users
+curl -i -X GET http://localhost:3000/users -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJybzFAZmZmZi5jb20iLCJpZCI6NSwicm9sZXMiOlt7ImlkIjoxLCJ2YWx1ZSI6IkFETUlOIiwiZGVzY3JpcHRpb24iOiJtYWluIHVzZXIiLCJjcmVhdGVkQXQiOiIyMDIxLTA2LTA3VDA1OjA1OjQ4LjE2M1oiLCJ1cGRhdGVkQXQiOiIyMDIxLTA2LTA3VDA1OjA1OjQ4LjE2M1oiLCJVc2VyUm9sZXMiOnsiaWQiOjQsInJvbGVJZCI6MSwidXNlcklkIjo1fX1dLCJpYXQiOjE2MjMwNzA3NDIsImV4cCI6MTYyMzE1NzE0Mn0.jb4vypt75V7JOSxpGbANreIKfKOd6VSZ639NhAodIoE'
+
+// grant role
+curl -i -X POST http://localhost:3000/users/role -H 'Content-Type: application/json' -d '{"userId": 2, "value": "ADMIN"}' -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJybzFAZmZmZi5jb20iLCJpZCI6NSwicm9sZXMiOlt7ImlkIjoxLCJ2YWx1ZSI6IkFETUlOIiwiZGVzY3JpcHRpb24iOiJtYWluIHVzZXIiLCJjcmVhdGVkQXQiOiIyMDIxLTA2LTA3VDA1OjA1OjQ4LjE2M1oiLCJ1cGRhdGVkQXQiOiIyMDIxLTA2LTA3VDA1OjA1OjQ4LjE2M1oiLCJVc2VyUm9sZXMiOnsiaWQiOjQsInJvbGVJZCI6MSwidXNlcklkIjo1fX1dLCJpYXQiOjE2MjMwNzA3NDIsImV4cCI6MTYyMzE1NzE0Mn0.jb4vypt75V7JOSxpGbANreIKfKOd6VSZ639NhAodIoE'
+
+// ban user
+curl -i -X POST http://localhost:3000/users/ban -H 'Content-Type: application/json' -d '{"userId": 2, "banReason": "boring guy"}' -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluM0B0dHR0LmNvbSIsImlkIjo0LCJyb2xlcyI6W3siaWQiOjEsInZhbHVlIjoiQURNSU4iLCJkZXNjcmlwdGlvbiI6Im1haW4gdXNlciIsImNyZWF0ZWRBdCI6IjIwMjEtMDYtMDdUMTM6MjU6MzUuMzU2WiIsInVwZGF0ZWRBdCI6IjIwMjEtMDYtMDdUMTM6MjU6MzUuMzU2WiJ9XSwiaWF0IjoxNjIzMDcyNTU1LCJleHAiOjE2MjMxNTg5NTV9.bHzvQUff8BPtza2uAmyyvNc1yiDNS6iiW1UDF_bgLF0'

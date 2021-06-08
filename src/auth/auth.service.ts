@@ -5,7 +5,7 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { createUserDto } from 'src/users/dto/create-user.dto';
+import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { UsersService } from 'src/users/users.service';
 import * as bcrypt from 'bcryptjs';
 import { User } from 'src/users/users.model';
@@ -17,12 +17,12 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async signin(userDto: createUserDto) {
+  async signin(userDto: CreateUserDto) {
     const user = await this.validateUser(userDto);
     return this.generateToken(user);
   }
 
-  async signup(userDto: createUserDto) {
+  async signup(userDto: CreateUserDto) {
     const candidate = await this.userService.getUserByEmail(userDto.email);
     if (candidate) {
       throw new HttpException(
@@ -46,7 +46,7 @@ export class AuthService {
     };
   }
 
-  private async validateUser(userDto: createUserDto) {
+  private async validateUser(userDto: CreateUserDto) {
     const user = await this.userService.getUserByEmail(userDto.email);
     const passwordEquals = await bcrypt.compare(
       userDto.password,
